@@ -1,0 +1,51 @@
+<div class="starter-template">
+    <h1>Fahrtenbuch Beispielanwendung</h1>
+
+    <p class="lead">{{message}}</p>
+
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th>Von</th>
+                <th>Bis</th>
+                <th>Strecke</th>
+                <th>Zweck</th>
+                <th>KM-Start</th>
+                <th>KM-Ende</th>
+                <th>KM-Geschäftlich</th>
+                <th>KM-Privat</th>
+                <th>Fahrer</th>
+                <th>Fahrzeug</th>
+                <th>Aktionen</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="fahrt in fahrten">
+                <td>{{fahrt.von | date :'dd.MM.yy'}}<br/>
+                    {{fahrt.von | date :'H:mm'}}
+                </td>
+                <td>{{fahrt.bis | date :'dd.MM.yy'}}
+                    <br/>
+                    {{fahrt.bis | date :'H:mm'}}
+                </td>
+                <td>{{fahrt.strecke}}</td>
+                <td>{{fahrt.zweck}}</td>
+                <td>{{fahrt.kmStart}}</td>
+                <td>{{fahrt.kmEnde}}</td>
+                <td>{{geschaeftlicheKm(fahrt)}}</td>
+                <td>{{privateKm(fahrt)}}</td>
+                <td>{{fahrt.fahrer}}</td>
+                <td>{{fahrt.fahrzeug}}</td>
+                <td>
+                    <a href="#/fahrten/{{fahrt._id}}/edit" class="btn btn-default">Fahrt bearbeiten</a>
+                    <a href="" ng-click="deleteFahrt(fahrt)" class="btn btn-danger">Fahrt löschen</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <a href="#/fahrten/new" class="btn btn-default">Neue Fahrt anlegen </a>
+</div>

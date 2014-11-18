@@ -1,0 +1,11 @@
+# Start MongoDB
+mongod
+
+# Start MongoDB Console
+mongo
+
+# Change MongoDB data Folder
+mongod --dbpath M:\Stuff\Web\MEAN\db
+
+# Speichern im Mean Stack
+1. Controller anlegen

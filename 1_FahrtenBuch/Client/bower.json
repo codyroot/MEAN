@@ -1,0 +1,20 @@
+{
+  "name": "1_ClientBasicApp",
+  "version": "0.0.0",
+  "homepage": "https://github.com/codyroot/MEAN",
+  "authors": [
+    "codyroot <smithyyy@myopera.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.2.0"
+  }
+}

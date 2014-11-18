@@ -1,0 +1,11 @@
+{
+  "von": "2012-01-01 8:00",
+  "bis": "2012-01-01 9:00",
+  "kmStart": 1,
+  "kmEnde": 2,
+  "strecke": "Allee 1",
+  "zweck": "Lieferung",
+  "privat": false,
+  "fahrer": "James Bond",
+  "fahrzeug": "BMW X5"
+}

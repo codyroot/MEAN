@@ -1,0 +1,85 @@
+<div class="control-group">
+    <label class="control-label" for="textinput">Von</label>
+
+    <div class="controls">
+        <input id="textinput" name="textinput" type="text" placeholder="2012-01-01 14:00" class="input-xlarge"
+               ng-model="fahrt.von">
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="bis">Bis</label>
+
+    <div class="controls">
+        <input id="bis" name="bis" type="text" placeholder="2012-01-01 15:00" class="input-xlarge" ng-model="fahrt.bis">
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="strecke">Strecke</label>
+
+    <div class="controls">
+        <input id="strecke" name="strecke" type="text" placeholder="Poststr. 1, 56070 Koblenz" class="input-xlarge"
+               ng-model="fahrt.strecke">
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="zweck">Zweck</label>
+
+    <div class="controls">
+        <input id="zweck" name="zweck" type="text" placeholder="Kundenbesuch, Kunde Müller" class="input-xlarge"
+               ng-model="fahrt.zweck">
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="kmStart">KM-Start</label>
+
+    <div class="controls">
+        <input id="kmStart" name="kmStart" type="text" placeholder="125" class="input-xlarge" ng-model="fahrt.kmStart">
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="kmEnde">KM-Ende</label>
+
+    <div class="controls">
+        <input id="kmEnde" name="kmEnde" type="text" placeholder="150" class="input-xlarge" ng-model="fahrt.kmEnde">
+
+    </div>
+</div>
+
+<div class="control-group">
+    <div class="controls">
+        <label class="checkbox" for="privat">
+            <input type="checkbox" name="privat" id="privat" ng-model="fahrt.privat">
+            Privat
+        </label>
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="fahrer">Fahrer</label>
+
+    <div class="controls">
+        <input id="fahrer" name="fahrer" type="text" placeholder="Wilhelm Brause" class="input-xlarge"
+               ng-model="fahrt.fahrer">
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="fahrzeug">Fahrzeug</label>
+
+    <div class="controls">
+        <input id="fahrzeug" name="fahrzeug" type="text" placeholder="AA-BB 123" class="input-xlarge"
+               ng-model="fahrt.fahrzeug">
+    </div>
+</div>
+
+<!-- Button -->
+<div class="control-group">
+    <div class="controls">
+        <input type="submit" class="btn btn-primary" value="Speichern"/>
+    </div>
+</div>
