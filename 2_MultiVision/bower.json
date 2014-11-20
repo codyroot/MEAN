@@ -1,0 +1,17 @@
+{
+  "name": "TestApp",
+  "version": "0.0.0",
+  "authors": [
+    ""
+  ],
+  "description": "",
+  "license": "",
+  "private": true,
+  "dependencies": {
+    "jquery": "*",
+    "toastr": "*",
+    "angular": "*",
+    "angular-resource": "*",
+    "angular-route": "*"
+  }
+}

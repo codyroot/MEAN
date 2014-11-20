@@ -1,0 +1,18 @@
+body {
+  padding-top: 80px;
+}
+.navbar-brand {
+  margin: -15px 0 -20px;
+}
+.navbar-brand h6 {
+  color: #fff5ee;
+}
+.nav li {
+  color: #f5f5f5;
+}
+footer {
+  margin-top: 10px;
+}
+footer p {
+  border-top: 1px solid #dcdcdc;
+}

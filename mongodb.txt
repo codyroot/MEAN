@@ -7,5 +7,13 @@ mongo
 # Change MongoDB data Folder
 mongod --dbpath M:\Stuff\Web\MEAN\db
 
+# Wechseln zwischen Produktion / Entwicklung
+-Windows Shell
+set NODE_ENV=production
+npm start
+
+-Unix Shell
+NODE_ENV=production npm start
+
 # Speichern im Mean Stack
 1. Controller anlegen

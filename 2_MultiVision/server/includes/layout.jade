@@ -1,0 +1,17 @@
+doctype html
+html
+    head
+        title MultiVision
+
+        link(rel="icon", type="image/x-icon", href="/favicon.ico")
+
+        include styles
+
+        // This Tag ist Important for Angular.js HTML5 URL Routing Mode
+        base(href="/")
+
+
+    body(ng-app="app")
+        block main-content
+
+        include scripts
