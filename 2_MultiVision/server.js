@@ -7,10 +7,6 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     routeHandler = require("./server/routeHandler"),
     db = require("./server/db");
-//// TODO: Better Solution,
-//    mongoMsg = "NO Data";
-
-var blubb = "No";
 
 /**
  * Viewpath and Engine

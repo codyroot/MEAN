@@ -1,3 +1,6 @@
+/**
+ * Initialize Angular Module
+ */
 angular.module('app', ['ngResource', 'ngRoute']);
 
 angular.module('app').config(function ($routeProvider, $locationProvider) {
@@ -7,7 +10,7 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
      */
     $routeProvider
         .when('/', {
-            templateUrl: '/partials/main',
+            templateUrl: '/partials/main/main',
             controller: 'mvMainCtrl'
         });
         //.when('/asd', {

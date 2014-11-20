@@ -1,5 +1,6 @@
 /**
  * Configuration of the Routing
+ *
  * @param app
  * @param mongoMsg
  */
@@ -8,14 +9,14 @@ module.exports = function (app, mongoMsg) {
      * Basic Routing
      * This route allows the usage of jade for the different Views
      */
-    app.get('/partials/:partialPath', function (req, res) {
+    app.get('/partials/*', function (req, res) {
         console.log("Partial Route");
-        res.render('partials/' + req.params.partialPath);
+        res.render('../../public/app/' + req.params["0"]);
     });
 
     /**
      * The *-Route für SPA Client-Site Routing
-     *
+     *                                4
      * !!!IMPORTANT: Diesen Routenaufruf als letztes deklarieren
      * Jede Anfrage durchläuft diese Route
      * Die Route * dient dabei  als  Platzhalter und bewirkt, dass  der angegebene

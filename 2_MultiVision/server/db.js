@@ -1,10 +1,4 @@
 /**
- *
- *
- *
- *
- */
-/**
  * DB Module
  *
  * @param mongoose  {mongoose<Object>}
