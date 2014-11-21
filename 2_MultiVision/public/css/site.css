@@ -19,3 +19,6 @@ footer {
 footer p {
   border-top: 1px solid #dcdcdc;
 }
+.toast-top-right {
+  top: 70px;
+}

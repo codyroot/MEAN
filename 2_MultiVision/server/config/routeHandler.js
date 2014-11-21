@@ -1,4 +1,4 @@
-var passport = require("passport");
+var auth = require("./auth");
 
 /**
  * Configuration of the Routing
@@ -16,26 +16,11 @@ module.exports = function (app) {
         res.render('../../public/app/' + req.params["0"]);
     });
 
-
+    /**
+     * Login Route
+     */
     app.post("/login", function (req, res, next) {
-        console.log("Login");
-        passport.authenticate("local", function (err, user, info) {
-            if (err) {
-                return next(err);
-            }
-
-            if (!user) {
-                res.send({success: false});
-            }
-
-            req.logIn(user, function (err) {
-                console.log(user);
-                if (err) {
-                    return next(err);
-                }
-                res.send({success: true, user: user});
-            });
-        })(req, res, next);
+        auth.authenticate(req, res, next);
     });
 
     /**
@@ -57,7 +42,6 @@ module.exports = function (app) {
      * Error Handling
      * catch 404 and forward to error handler
      */
-        //
     app.use(function (req, res, next) {
         var err = new Error('Not Found');
         err.status = 404;

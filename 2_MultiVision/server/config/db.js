@@ -1,4 +1,25 @@
-var mongoose = require("mongoose");
+var mongoose = require("mongoose"),
+    crypto = require("crypto");
+
+/**
+ * Hash PW
+ */
+var createSalt = function () {
+        return crypto.randomBytes(128).toString("base64");
+    },
+    /**
+     *
+     * @param salt randomly generated number
+     * @param pwd
+     * @returns {*}
+     */
+    hashPwd = function (salt, pwd) {
+        // Hash Message Authentication Code (algorithm, salt)
+        var hmac = crypto.createHmac("sha1", salt);
+
+        return hmac.update(pwd).digest("hex");
+    };
+
 /**
  * DB Module
  */
@@ -14,16 +35,37 @@ module.exports = function () {
         userSchema = mongoose.Schema({
             firstName: String,
             lastName: String,
-            username: String
+            username: String,
+            salt: String,
+            hashed_pw: String
         }),
+        User;
+
+    /**
+     * Add Custom Methods to the schema
+     * @type {{}}
+     */
+    userSchema.methods = {
         /**
-         * Model, which its based on the Schema
+         * Compares the hashed_pw
+         *
+         * @param passwordToMatch
+         * @returns {boolean}
          */
-        User = mongoose.model('User', userSchema);
+        authenticate: function (passwordToMatch) {
+            return hashPwd(this.salt, passwordToMatch) === this.hashed_pw;
+        }
+    };
+
+    /**
+     * Model, which its based on the Schema
+     */
+    User = mongoose.model('User', userSchema);
 
     db.on('error', console.error.bind(console, 'connection error...'));
     db.once('open', function callback() {
         console.log('multivision db opened');
+        console.dir(db);
     });
 
     /**
@@ -31,9 +73,19 @@ module.exports = function () {
      */
     User.find({}).exec(function (err, collection) {
         if (collection.length === 0) {
-            User.create({firstName: "Bud", lastName: "Spencer", username: "Buddy"});
-            User.create({firstName: "James", lastName: "Bond", username: "007"});
-            User.create({firstName: "John", lastName: "Sheppard", username: "bobo"});
+            var salt, hash;
+
+            salt = createSalt();
+            hash = hashPwd(salt, "Buddy");
+            User.create({firstName: "Bud", lastName: "Spencer", username: "Buddy", salt: salt, hashed_pw: hash});
+
+            salt = createSalt();
+            hash = hashPwd(salt, "007");
+            User.create({firstName: "James", lastName: "Bond", username: "007", salt: salt, hashed_pw: hash});
+
+            salt = createSalt();
+            hash = hashPwd(salt, "bobo");
+            User.create({firstName: "John", lastName: "Sheppard", username: "bobo", salt: salt, hashed_pw: hash});
         }
     });
 };
