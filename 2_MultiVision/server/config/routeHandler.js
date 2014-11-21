@@ -4,7 +4,6 @@ var auth = require("./auth");
  * Configuration of the Routing
  *
  * @param app
- * @param mongoMsg
  */
 module.exports = function (app) {
     /**

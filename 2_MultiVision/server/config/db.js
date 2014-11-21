@@ -65,7 +65,7 @@ module.exports = function () {
     db.on('error', console.error.bind(console, 'connection error...'));
     db.once('open', function callback() {
         console.log('multivision db opened');
-        console.dir(db);
+        console.dir(db.collections);
     });
 
     /**

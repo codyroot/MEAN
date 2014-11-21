@@ -8,7 +8,7 @@ var passport = require("passport");
  * @param next
  */
 exports.authenticate = function (req, res, next) {
-    var auth = passport.authenticate("local", function (err, user, info) {
+    var auth = passport.authenticate("local", function (err, user/*, info*/) {
         console.log("passport.authenticate");
         if (err) {
             return next(err);
