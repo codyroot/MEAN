@@ -29,3 +29,32 @@ exports.authenticate = function (req, res, next) {
     });
     auth(req, res, next);
 };
+
+/**
+ * check if User is authorized to look into the URL
+ */
+exports.requiresApiLogin = function (req, res, next) {
+    /**
+     * isAuthenticated is a passport fn
+     */
+    if (!req.isAuthenticated()) {
+        res.status(403);
+        res.end();
+    } else {
+        next();
+    }
+};
+
+/**
+ * Check if the User has the right to view a page
+ */
+exports.requiresRole = function (role) {
+    return function (req, res, next) {
+        if (!req.isAuthenticated() || req.user.roles.indexOf(role) === -1) {
+            res.status(403);
+            res.end();
+        } else {
+            next();
+        }
+    }
+};

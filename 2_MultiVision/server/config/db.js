@@ -37,7 +37,8 @@ module.exports = function () {
             lastName: String,
             username: String,
             salt: String,
-            hashed_pw: String
+            hashed_pw: String,
+            roles: [String]
         }),
         User;
 
@@ -65,7 +66,6 @@ module.exports = function () {
     db.on('error', console.error.bind(console, 'connection error...'));
     db.once('open', function callback() {
         console.log('multivision db opened');
-        console.dir(db.collections);
     });
 
     /**
@@ -81,11 +81,11 @@ module.exports = function () {
 
             salt = createSalt();
             hash = hashPwd(salt, "007");
-            User.create({firstName: "James", lastName: "Bond", username: "007", salt: salt, hashed_pw: hash});
+            User.create({firstName: "James", lastName: "Bond", username: "007", salt: salt, hashed_pw: hash, roles:[]});
 
             salt = createSalt();
             hash = hashPwd(salt, "bobo");
-            User.create({firstName: "John", lastName: "Sheppard", username: "bobo", salt: salt, hashed_pw: hash});
+            User.create({firstName: "John", lastName: "Sheppard", username: "bobo", salt: salt, hashed_pw: hash, roles:["admin"]});
         }
     });
 };

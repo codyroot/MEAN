@@ -1,4 +1,5 @@
-var auth = require("./auth");
+var auth = require("./auth"),
+    mongoose = require("mongoose");
 
 /**
  * Configuration of the Routing
@@ -6,6 +7,20 @@ var auth = require("./auth");
  * @param app
  */
 module.exports = function (app) {
+    var User = mongoose.model("User");
+
+    /**
+     * Get all Users Route
+     * check if User is authorized to look into the URL
+     * The first function is the middleware to handle this behavior
+     * Should be the first Route!!!
+     */
+    app.get("/api/users", auth.requiresRole("admin"), function (req, res) {
+        User.find({}).exec(function (err, collection) {
+            res.send(collection);
+        });
+    });
+
     /**
      * Basic Routing
      * This route allows the usage of jade for the different Views

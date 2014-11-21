@@ -4,7 +4,7 @@
  * - Set identity of the User
  * - communicates back to the Controller with a promise
  */
-angular.module('app').factory('mvAuth', function ($http, mvIdentity, $q) {
+angular.module('app').factory('mvAuth', function ($http, mvIdentity, $q, mvUser) {
     return {
         authenticateUser: function (username, password) {
             var defer = $q.defer();
@@ -12,7 +12,9 @@ angular.module('app').factory('mvAuth', function ($http, mvIdentity, $q) {
             $http.post("/login", {username: username, password: password})
                 .then(function (response) {
                     if (response.data.success) {
-                        mvIdentity.currentUser = response.data.user;
+                        var user = new mvUser();
+                        angular.extend(user, response.data.user);
+                        mvIdentity.currentUser = user;
                         defer.resolve(true);
                     } else {
                         defer.resolve(false);

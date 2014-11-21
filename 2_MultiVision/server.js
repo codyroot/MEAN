@@ -1,4 +1,5 @@
-var express = require('express'),
+var
+    express = require('express'),
     env = process.env.NODE_ENV = process.env.NODE_ENV || 'development',
     app = express(),
     expressConfig = require("./server/config/express"),
@@ -30,6 +31,6 @@ passportHandler(app);
 routeHandler(app);
 
 /**
- * Export Module
+ * Export Module for usage in bin
  */
 module.exports = app;
