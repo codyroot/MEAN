@@ -1,10 +1,12 @@
+var passport = require("passport");
+
 /**
  * Configuration of the Routing
  *
  * @param app
  * @param mongoMsg
  */
-module.exports = function (app, mongoMsg) {
+module.exports = function (app) {
     /**
      * Basic Routing
      * This route allows the usage of jade for the different Views
@@ -12,6 +14,28 @@ module.exports = function (app, mongoMsg) {
     app.get('/partials/*', function (req, res) {
         console.log("Partial Route");
         res.render('../../public/app/' + req.params["0"]);
+    });
+
+
+    app.post("/login", function (req, res, next) {
+        console.log("Login");
+        passport.authenticate("local", function (err, user, info) {
+            if (err) {
+                return next(err);
+            }
+
+            if (!user) {
+                res.send({success: false});
+            }
+
+            req.logIn(user, function (err) {
+                console.log(user);
+                if (err) {
+                    return next(err);
+                }
+                res.send({success: true, user: user});
+            });
+        })(req, res, next);
     });
 
     /**
@@ -26,9 +50,7 @@ module.exports = function (app, mongoMsg) {
      */
     app.get('*', function (req, res) {
         console.log("Star Route");
-        res.render('index', {
-            mongoMsg: mongoMsg
-        });
+        res.render('index');
     });
 
     /**
