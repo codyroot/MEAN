@@ -20,6 +20,18 @@ angular.module('app').factory('mvAuth', function ($http, mvIdentity, $q) {
                 });
 
             return defer.promise;
+        },
+        logoutUser: function () {
+            $http.defaults.headers.post["Content-Type"] = "application/json";
+            var defer = $q.defer();
+
+            $http.post("/logout", {logout: true})
+                .then(function () {
+                    mvIdentity.currentUser = undefined;
+                    defer.resolve();
+                });
+
+            return defer.promise;
         }
     };
 });

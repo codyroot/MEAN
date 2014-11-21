@@ -23,6 +23,16 @@ module.exports = function (app) {
     });
 
     /**
+     * Logout Route
+     */
+    app.post("/logout", function (req, res) {
+        // passport adds logout to req
+        req.logout();
+        res.send({yo: "yo"});
+        //res.end();
+    });
+
+    /**
      * The *-Route für SPA Client-Site Routing
      *                                4
      * !!!IMPORTANT: Diesen Routenaufruf als letztes deklarieren
@@ -34,7 +44,10 @@ module.exports = function (app) {
      */
     app.get('*', function (req, res) {
         console.log("Star Route");
-        res.render('index');
+        res.render('index', {
+            // Is there an User
+            bootstrappedUser: req.user
+        });
     });
 
     /**

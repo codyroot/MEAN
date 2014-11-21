@@ -22,7 +22,7 @@ db();
 /**
  * Init Passport auth
  */
-passportHandler();
+passportHandler(app);
 
 /**
  * Init Routing(with the Data)

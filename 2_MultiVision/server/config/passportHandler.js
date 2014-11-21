@@ -4,7 +4,7 @@ var passport = require("passport"),
 /**
  * Login Auth with DB Query
  */
-module.exports = function () {
+module.exports = function (app) {
     var User = mongoose.model("User");
     /**
      * Tell passport to use a local strategy
@@ -29,7 +29,15 @@ module.exports = function () {
         });
     }));
 
-// Tell passport to serialize an User
+    /**
+     * Custom Middleware
+     */
+    app.use(function (req, res, next) {
+        console.log(req.user);
+        next();
+    });
+
+// Tell passport to serialize an User || Session Cookie
     passport.serializeUser(function (user, done) {
         console.log("passport.serializeUser");
         if (user) {
@@ -37,7 +45,7 @@ module.exports = function () {
         }
     });
 
-// Tell passport to deserialize an User
+// Tell passport to deserialize an User ||Drop Session Cookie, if user changes
     passport.deserializeUser(function (id, done) {
         console.log("passport.deserializeUser");
         User.findOne({_id: id}).exec(function (err, user) {
